@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from modelcluster.fields import  ParentalKey
 from wagtail.models import Page
 from wagtail.fields import RichTextField
@@ -15,9 +16,35 @@ class BlogHomePage(Page):
 
 # articolo
 class Articolo(Page):
-    titolo      = models.CharField(max_length=250)
+    #variabili dell'articolo
+    #titolo      = models.CharField(max_length=250)
     descrizione = RichTextField()
+    testo       = RichTextField()
     data        = models.DateField("data di publicazione")
-    autore      = None #da importare tutta la classe User da django(very easy)
-    copertina   = None #da fare il modelo image per la copertina 
-    documento   = models.FileField(upload_to='uploads/% y/% m/% d/')
+    autore      = models.ForeignKey(User,default=0, on_delete=models.PROTECT)
+
+    #per la copertina provo di usare il sistema delle imagini di waigtail
+    copertina= models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    documento   = models.FileField(upload_to='uploads/% y/% m/% d/',blank=True)
+
+    #searchfields
+    search_fields = Page.search_fields + [
+            index.SearchField('title'),
+            index.SearchField('autore'),
+    ]
+
+    content_panels = Page.content_panels + [
+            #FieldPanel('titolo'),
+            FieldPanel('descrizione'),
+            FieldPanel('testo'),
+            FieldPanel('autore'),
+            FieldPanel('data'),
+            FieldPanel('copertina'),
+            FieldPanel('documento'),
+    ]
