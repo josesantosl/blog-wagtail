@@ -27,6 +27,11 @@ INSTALLED_APPS = [
     "blog",
     "home",
     "search",
+
+    #ancora non so se mettere rest_framework o wagtail_api
+    "rest_framework",
+    "wagtail.api.v2",
+
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",

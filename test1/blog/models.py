@@ -5,6 +5,7 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
+from wagtail.api import APIField
 
 
 # The index Page
@@ -13,12 +14,12 @@ class BlogHomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('intro',classname='full')
     ]   
+
     subpage_types = ['blog.Articolo']
 
 # articolo
 class Articolo(Page):
     #variabili dell'articolo
-    #titolo      = models.CharField(max_length=250)
     descrizione = RichTextField()
     testo       = RichTextField()
     data        = models.DateField("data di publicazione")
@@ -40,14 +41,24 @@ class Articolo(Page):
             index.SearchField('autore'),
     ]
 
+    # the fields to create a new article.
     content_panels = Page.content_panels + [
-            #FieldPanel('titolo'),
             FieldPanel('descrizione'),
             FieldPanel('testo'),
             FieldPanel('autore'),
             FieldPanel('data'),
             FieldPanel('copertina'),
             FieldPanel('documento'),
+    ]
+
+    # fields to export over the api.
+    api_fields = [
+            APIField('title'),
+            APIField('descrizione'),
+            APIField('testo'),
+            APIField('autore'),
+            APIField('data'),
+            
     ]
 
     #parent page

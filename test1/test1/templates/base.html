@@ -27,7 +27,9 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
+	<div style="margin-left: 400px; margin-right: 400px";>
         {% block content %}{% endblock %}
+	</div>
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/test1.js' %}"></script>
