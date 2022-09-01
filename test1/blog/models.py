@@ -13,6 +13,7 @@ class BlogHomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('intro',classname='full')
     ]   
+    subpage_types = ['blog.Articolo']
 
 # articolo
 class Articolo(Page):
@@ -48,3 +49,6 @@ class Articolo(Page):
             FieldPanel('copertina'),
             FieldPanel('documento'),
     ]
+
+    #parent page
+    parent_page_types = ['blog.BlogHomePage']
