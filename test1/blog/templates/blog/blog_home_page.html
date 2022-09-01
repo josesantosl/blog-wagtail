@@ -11,7 +11,7 @@
 
     {% for articolo in page.get_children %}
         <h2><a href="{% pageurl articolo %}">{{ articolo.title }}</a></h2>
-        {{ articolo.specific.descrizione }}
+        {{ articolo.specific.descrizione|richtext }}
     {% endfor %}
 
 {% endblock %}

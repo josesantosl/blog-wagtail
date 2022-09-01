@@ -1,17 +1,22 @@
 {% extends "base.html" %}
 
 {% load wagtailcore_tags %}
-
+{% load wagtailimages_tags %}
 {% block body_class %}template dell'articolo{% endblock %}
 
 {% block content %}
     <center><h1>{{ page.title }}</h1></center>
-    <p>{{ page.data }}  {{page.autore}}</p>
+    <p>scritto per {{page.autore}} nel {{page.data}}</p>
 
-    <div class="intro">{{ page.descrizione }}</div>
+    <center>
+    	{% if page.copertina != None%}
+    		{% image page.copertina max-1200x720%}
+    	{% endif %}
 
-    {{ page.testo|richtext }}
+    <div class="intro">{{ page.descrizione|richtext  }}</div>
 
-    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+    <p> {{ page.testo|richtext }}<p>
+    </center>
+
 
 {% endblock %}
