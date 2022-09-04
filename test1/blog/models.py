@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from rest_framework.fields import CharField
-from modelcluster.fields import  ParentalKey
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
@@ -15,6 +16,27 @@ class BlogHomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('intro',classname='full')
     ]   
+    def get_context(self,request, *args, **kwargs):
+        context   = super().get_context(request, *args, **kwargs)
+
+        #chiamo tutti gli articoli e dopo lo meto nel paginator di 5 in 5.
+        articoli = Articolo.objects.live().public().order_by('-first_published_at')
+        paginator = Paginator(articoli, 5)
+        
+        page = request.GET.get("page")
+        try:
+            #Se la url dice ?page=x, ritorna la pagina x.
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            #Se ?page=x, e x non è un numero
+            posts = paginator.page(1)
+        except EmptyPage:
+            #Se non esis quella pagina.
+            posts = paginator.page(paginator.num_pages)
+
+        context['articoli'] = posts
+        return context
+
 
     subpage_types = ['blog.Articolo']
 
@@ -57,7 +79,7 @@ class Articolo(Page):
             APIField('title'),
             APIField('descrizione'),
             APIField('testo'),
-            APIField('autore',serializer=CharField(source='autore.username')),
+            APIField('autore',serializer=CharField(source='autore.username')), #modificato con il serializer per ricevere solo il username
             APIField('data'),
             
     ]

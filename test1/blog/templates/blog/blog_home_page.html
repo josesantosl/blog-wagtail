@@ -9,9 +9,22 @@
 
     <div class="intro">{{ page.intro|richtext }}</div>
 
-    {% for articolo in page.get_children %}
+    {% for articolo in articoli %}
         <h2><a href="{% pageurl articolo %}">{{ articolo.title }}</a></h2>
         {{ articolo.specific.descrizione|richtext }}
     {% endfor %}
 
+    {% if articoli.paginator.num_pages > 1 %}
+    	{% if articoli.has_previous %}
+		<a href="?page={{ articoli.previous_page_number }}">
+		 <span>Previus</span>
+                </a>
+	{% endif %}
+
+	{% if articoli.has_next %}
+		<a href="?page={{ articoli.next_page_number }}">
+			<div align="right">Next</div>
+		</a>
+	{% endif %}
+    {% endif %}
 {% endblock %}
