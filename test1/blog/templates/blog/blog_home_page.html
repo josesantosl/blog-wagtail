@@ -22,9 +22,9 @@
 	{% endif %}
 
 	{% if articoli.has_next %}
-		<a href="?page={{ articoli.next_page_number }}">
-			<div align="right">Next</div>
-		</a>
+		<div align="right">
+			<a href="?page={{ articoli.next_page_number }}">Next</a>
+		</div>
 	{% endif %}
     {% endif %}
 {% endblock %}
