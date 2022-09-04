@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from rest_framework.fields import CharField
 from modelcluster.fields import  ParentalKey
 from wagtail.models import Page
 from wagtail.fields import RichTextField
@@ -56,7 +57,7 @@ class Articolo(Page):
             APIField('title'),
             APIField('descrizione'),
             APIField('testo'),
-            APIField('autore'),
+            APIField('autore',serializer=CharField(source='autore.username')),
             APIField('data'),
             
     ]

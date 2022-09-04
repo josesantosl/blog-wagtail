@@ -22,7 +22,7 @@ def main():
         worksheet.write(row,1,pagina['descrizione'])
         worksheet.write(row,2,pagina['testo'])
         worksheet.write(row,3,pagina['data'])
-        worksheet.write(row,4,pagina['autore']['id'])
+        worksheet.write(row,4,pagina['autore'])
 
     workbook.close()
 
