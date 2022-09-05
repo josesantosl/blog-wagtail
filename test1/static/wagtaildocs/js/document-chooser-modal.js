@@ -1,0 +1,1 @@
+/home/adriantora/programmazione/blogDoppiozero/blogEnv/lib/python3.8/site-packages/wagtail/documents/static/wagtaildocs/js/document-chooser-modal.js

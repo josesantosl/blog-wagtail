@@ -1,0 +1,1 @@
+/home/adriantora/programmazione/blogDoppiozero/blogEnv/lib/python3.8/site-packages/wagtail/users/static/wagtailusers/js/group-form.js

@@ -1,0 +1,1 @@
+/home/adriantora/programmazione/blogDoppiozero/blogEnv/lib/python3.8/site-packages/wagtail/snippets/static/wagtailsnippets/js/snippet-multiple-select.js
