@@ -2,7 +2,10 @@
 
 {% load wagtailcore_tags %}
 {% load static %}
+
+{% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'blog/css/blog_home_page.css' %}">
+{% endblock %}
 {% block body_class %}template-blogindexpage{% endblock %}
 
 {% block content %}
@@ -12,10 +15,12 @@
 
     <div id='lgDemo'>
     {% for articolo in articoli %}
-    	<div class="item" href="{% pageurl articolo %}">
-		<h2>{{articolo.title}}</h2>
-        	{{ articolo.specific.descrizione|richtext }}
-	</div>
+	<a href="{% pageurl articolo %}">
+    		<div class="item" >
+			<h2>{{articolo.title}}</h2>
+        			{{ articolo.specific.descrizione|richtext }}
+		</div>
+	</a>
     {% endfor %}
     </div>
 

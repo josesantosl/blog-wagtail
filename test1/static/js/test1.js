@@ -1,1 +1,0 @@
-/home/adriantora/programmazione/blogDoppiozero/test1/test1/static/js/test1.js

@@ -9,6 +9,11 @@
 }
 #lgDemo .item:nth-child(odd) { background: #f7f7f7; }
 
+a {
+	text-decoration:none!important;
+	color:black!important;
+}
+
 #lgDemo.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 #lgDemo.grid .item:nth-child(odd) { background: none; }
 

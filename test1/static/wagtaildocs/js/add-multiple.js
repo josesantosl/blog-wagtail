@@ -1,1 +1,0 @@
-/home/adriantora/programmazione/blogDoppiozero/blogEnv/lib/python3.8/site-packages/wagtail/documents/static/wagtaildocs/js/add-multiple.js
